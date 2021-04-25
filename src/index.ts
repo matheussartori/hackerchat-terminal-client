@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import Events from "events";
 import CliConfig from "./CliConfig";
 import TerminalController from "./TerminalController";
