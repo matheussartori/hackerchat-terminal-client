@@ -1,4 +1,7 @@
+import chalk from 'chalk'
 import * as Types from './@types/CliConfigTypes'
+
+const DEFAULT_URL = 'https://hackerchat-server.herokuapp.com'
 
 export default class CliConfig {
   username
@@ -13,7 +16,7 @@ export default class CliConfig {
    * @param {{username: string, hostUri: string, room: string}} params
    * @returns {void} void
    */
-  constructor({ username, hostUri, room }: Types.ClientSettings) {
+  constructor({ username, hostUri = DEFAULT_URL, room }: Types.ClientSettings) {
     this.username = username
     this.room = room
 
@@ -45,6 +48,34 @@ export default class CliConfig {
       )
     }
 
+    CliConfig.validateArguments(cmd)
+
     return new CliConfig(Object.fromEntries(cmd))
+  }
+
+  /**
+   * Validate the arguments.
+   *
+   * @param {Map<string><string>} cmd
+   * @returns {void} 
+   */
+  static validateArguments(cmd: Map<string, string>): void {
+    const userName = cmd.get('username')
+    const room = cmd.get('room')
+    let error = false
+    
+    if (typeof userName === 'undefined' || userName === null) {
+      console.error(chalk.red('ERROR!'), 'You need to specify the username with the --username flag.')
+      error = true
+    }
+
+    if (typeof room === 'undefined' || room === null) {
+      console.error(chalk.red('ERROR!'), 'You need to specify the room with the --room flag.')
+      error = true
+    }
+
+    if (error) {
+      process.exit(0)
+    }
   }
 }
