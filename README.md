@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Hackerchat Terminal Client" height="350" src="./assets/hackerchat.svg" />
+  <img alt="Hackerchat Terminal Client" height="350" src="./assets/hackerchat-terminal-client.png" />
 </p>
 
 <h3 align="center">
@@ -19,7 +19,9 @@
 
 <p align="center">
   <a href="#about-the-project">About the project</a><br>
-  <a href="#starting-a-server">Connecting to a server</a>
+  <a href="#installation">Installation</a>
+  <a href="#connecting-to-a-server">Connecting to a server</a>
+  <a href="#closing-the-chat">Closing the chat</a>
 </p>
 
 ## About the project
@@ -28,25 +30,37 @@ Hacker chat is a http service that works with websockets. It allows users to cre
 
 It is possible to create any interface to communicate with it, web, mobile, desktop, etc.
 
-The socket is created without any third-party lib like <a href="https://socket.io/" target="_blank">Socket.io</a>, the only dependency is <a href="https://www.npmjs.com/package/uuid" target="_blank">uuid</a>, mainly for unique socket communications.
+The terminal client allows you to connect to any hackerchat server, directly on the shell.
+
+<p align="center">
+  <img alt="Hackerchat Terminal Client" src="./assets/terminal.png" />
+</p>
 
 ### Installation
 
-To run the server, you need to install the node dependencies, and a node engine version 15 or above. To install the modules:
+To install the client, you'll need to run:
 
 ```bash
-npm install
+npm install -g @redstone-solutions/hackerchat-client
+```
+or...
+```bash
+yarn global add @redstone-solutions/hackerchat-client
 ```
 
-### Starting a server
+### Connecting to a server
 
-To start a server, you can specify the port on the NODE_ENV PORT, for example, on linux:
+For connecting with a server, you'll need to run:
 
 ```bash
-PORT=3000 npm run start
+hackerchat --username YOUR_USERNAME --room ROOM_NAME --hostUri SERVER_URL
 ```
 
-Since this project uses <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>, you need to run "npm run build" before "npm run start", or you can simply run "npm run dev" to run the project with <a href="https://www.npmjs.com/package/ts-node" target="_blank">ts-node</a> on the src folder.
+The hostUri argument is optional. If the host is missing, the client will connect with the global server.
+
+### Closing the chat
+
+If you want to close the chat, double press the "ESC" button.
 
 ---
 

@@ -54,7 +54,7 @@ export default class SocketClient {
     })
 
     this.serverConnection.on('end', () => {
-      console.log('I disconnected!')
+      console.log('Connection ended.')
     })
 
     this.serverConnection.on('error', error => {
