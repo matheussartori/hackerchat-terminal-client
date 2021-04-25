@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Hackerchat Terminal Client" height="350" src="./assets/hackerchat-terminal-client.png" />
+  <img alt="Hackerchat Terminal Client" height="350" src="https://github.com/redstone-solutions/hackerchat-terminal-client/raw/main/assets/hackerchat-terminal-client.png" />
 </p>
 
 <h3 align="center">
@@ -33,7 +33,7 @@ It is possible to create any interface to communicate with it, web, mobile, desk
 The terminal client allows you to connect to any hackerchat server, directly on the shell.
 
 <p align="center">
-  <img alt="Hackerchat Terminal Client" src="./assets/terminal.png" />
+  <img alt="Hackerchat Terminal Client" src="https://github.com/redstone-solutions/hackerchat-terminal-client/raw/main/assets/terminal.png" />
 </p>
 
 ### Installation
