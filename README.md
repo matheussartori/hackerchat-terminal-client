@@ -19,9 +19,9 @@
 
 <p align="center">
   <a href="#about-the-project">About the project</a><br>
-  <a href="#installation">Installation</a>
-  <a href="#connecting-to-a-server">Connecting to a server</a>
-  <a href="#closing-the-chat">Closing the chat</a>
+  <a href="#installation">Installation</a><br>
+  <a href="#connecting-to-a-server">Connecting to a server</a><br>
+  <a href="#closing-the-chat">Closing the chat</a><br>
 </p>
 
 ## About the project

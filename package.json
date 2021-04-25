@@ -1,7 +1,7 @@
 {
   "name": "@redstone-solutions/hackerchat-client",
-  "version": "1.0.0-alpha.4",
-  "description": "",
+  "version": "1.0.0",
+  "description": "The hackerchat client allows you to connect to any hackerchat server, directly on the shell.",
   "main": "dist/index.js",
   "bin": {
     "hackerchat": "dist/index.js"
