@@ -2,21 +2,16 @@ import blessed, { Widgets } from 'blessed'
 import * as Types from './@types/ComponentTypes'
 
 export default class ComponentBuilder {
-  public screen: Widgets.Screen | undefined
-  public layout: Widgets.LayoutElement | undefined
-  public input: Widgets.InputElement | undefined
-  public chat: Widgets.ListOptions<Widgets.ListElementStyle> | undefined
-  public status: Widgets.ListOptions<Widgets.ListElementStyle> | undefined
-  public activityLog: Widgets.ListOptions<Widgets.ListElementStyle> | undefined
-
-  /**
-   * ComponentBuilder constructor.
-   */
-  constructor() { }
+  public screen!: Widgets.Screen
+  public layout!: Widgets.LayoutElement
+  public input!: Widgets.InputElement
+  public chat!: Widgets.ListOptions<Widgets.ListElementStyle>
+  public status!: Widgets.ListOptions<Widgets.ListElementStyle>
+  public activityLog!: Widgets.ListOptions<Widgets.ListElementStyle>
 
   /**
    * Returns the baseComponent, used on many others to bootstrap.
-   * 
+   *
    * @returns {Types.BaseComponent}
    */
   private baseComponent(): Types.BaseComponent {
@@ -100,7 +95,7 @@ export default class ComponentBuilder {
    * @returns {ComponentBuilder} this
    */
   setChatComponent(): ComponentBuilder {
-    // @ts-ignore
+    // @ts-ignore -- Ignoring the baseComponent attributes who doesn't exists on blessed.list.
     this.chat = blessed.list({
       ...this.baseComponent(),
       parent: this.layout,
@@ -119,7 +114,7 @@ export default class ComponentBuilder {
    * @returns {ComponentBuilder} this
    */
   setStatusComponent(): ComponentBuilder {
-    // @ts-ignore
+    // @ts-ignore -- Ignoring the baseComponent attributes who doesn't exists on blessed.list.
     this.status = blessed.list({
       ...this.baseComponent(),
       parent: this.layout,
@@ -137,7 +132,7 @@ export default class ComponentBuilder {
    * @returns {ComponentBuilder} this
    */
   setActivityLogComponent(): ComponentBuilder {
-    // @ts-ignore
+    // @ts-ignore -- Ignoring the baseComponent attributes who doesn't exists on blessed.list.
     this.activityLog = blessed.list({
       ...this.baseComponent(),
       parent: this.layout,
@@ -152,7 +147,7 @@ export default class ComponentBuilder {
   /**
    * Build and return all rendered components.
    * 
-   * @returns {} components
+   * @returns {Types.Component} components
    */
   build(): Types.Component  {
     const components = {
@@ -163,7 +158,6 @@ export default class ComponentBuilder {
       activityLog: this.activityLog
     }
 
-    // @ts-ignore
     return components
   }
 }

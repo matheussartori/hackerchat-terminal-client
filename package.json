@@ -1,10 +1,10 @@
 {
   "name": "@redstone-solutions/hackerchat-client",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "",
   "main": "dist/index.js",
   "bin": {
-    "hacker-chat": "dist/index.js"
+    "hackerchat": "dist/index.js"
   },
   "scripts": {
     "build": "tsc"
@@ -19,8 +19,8 @@
     "nodejs",
     "node"
   ],
-  "author": "matheussartori",
-  "license": "ISC",
+  "author": "redstone-solutions",
+  "license": "MIT",
   "dependencies": {
     "blessed": "^0.1.81",
     "chalk": "^4.1.1"

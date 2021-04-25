@@ -11,7 +11,7 @@ export default class EventManager {
   /**
    * EventManager constructor.
    *
-   * @param {{ componentEmitter: object, socketClient: object}} params
+   * @param {Types.EventManagerType} eventManagerType
    */
   constructor({ componentEmitter, socketClient }: Types.EventManagerType) {
     this.componentEmitter = componentEmitter
@@ -21,7 +21,8 @@ export default class EventManager {
   /**
    * Join the room and listen for new messages.
    *
-   * @param {string} data 
+   * @param {Types.Join} data
+   * @returns {void}
    */
   joinRoomWaitMessages(data: Types.Join): void {
     this.socketClient.sendMessage(EventTypes.events.socket.JOIN_ROOM, data)
@@ -34,9 +35,10 @@ export default class EventManager {
   /**
    * Updates the connected users.
    *
-   * @param {Map} users 
+   * @param {Map<string, Types.User>} users
+   * @returns {void}
    */
-  updateUsers(users: []): void {
+  updateUsers(users: Map<string, Types.User>): void {
     const connectedUsers = users
     connectedUsers.forEach(({ id, userName }) => this.allUsers.set(id, userName))
     this.updateUsersComponent()
@@ -45,7 +47,8 @@ export default class EventManager {
   /**
    * Disconnect the user from a room.
    *
-   * @param {Map} user 
+   * @param {Types.User} user
+   * @returns {void}
    */
   disconnectUser(user: Types.User): void {
     const { userName, id } = user
@@ -58,7 +61,8 @@ export default class EventManager {
   /**
    * Emit the message received event.
    *
-   * @param {string} message 
+   * @param {string} message
+   * @returns {void}
    */
   message(message: string): void {
     this.emitComponentUpdate(
@@ -70,10 +74,10 @@ export default class EventManager {
   /**
    * Handle the upcoming connected users.
    *
-   * @param {object} message 
+   * @param {Types.User} user
+   * @returns {void}
    */
-  newUserConnected(message: Types.User): void {
-    const user = message
+  newUserConnected(user: Types.User): void {
     this.allUsers.set(user.id, user.userName)
     this.updateUsersComponent()
     this.updateActivityLogComponent(`${user.userName} joined!`)
@@ -82,7 +86,8 @@ export default class EventManager {
   /**
    * Emit for update the activity log component.
    *
-   * @param {string} message 
+   * @param {string} message
+   * @returns {void}
    */
   private updateActivityLogComponent(message: string): void {
     this.emitComponentUpdate(
@@ -93,9 +98,10 @@ export default class EventManager {
 
   /**
    * Emit the events to the componentEmitter.
-   * 
-   * @param {string} event 
-   * @param {string} message 
+   *
+   * @param {string} event
+   * @param {string} message
+   * @returns {void}
    */
   private emitComponentUpdate(event: string, message: string): void {
     this.componentEmitter.emit(
@@ -106,8 +112,10 @@ export default class EventManager {
 
   /**
    * Update all users on the component side.
+   *
+   * @returns {void}
    */
-  private updateUsersComponent() {
+  private updateUsersComponent(): void {
     this.emitComponentUpdate(
       EventTypes.events.app.STATUS_UPDATED,
       // @ts-ignore
@@ -118,9 +126,9 @@ export default class EventManager {
   /**
    * Get all the class functions and return with Map.
    *
-   * @returns {Map} functions
+   * @returns {Map<string, string>} functions
    */
-  getEvents() {
+  getEvents(): Map<string, string> {
     const functions = Reflect.ownKeys(EventManager.prototype)
       .filter(fn => fn !== 'constructor')
       // @ts-ignore

@@ -13,8 +13,7 @@ export default class CliConfig {
   /**
    * CliConfig constructor.
    * 
-   * @param {{username: string, hostUri: string, room: string}} params
-   * @returns {void} void
+   * @param {Types.ClientSettings} clientSettings
    */
   constructor({ username, hostUri = DEFAULT_URL, room }: Types.ClientSettings) {
     this.username = username
@@ -57,7 +56,7 @@ export default class CliConfig {
    * Validate the arguments.
    *
    * @param {Map<string><string>} cmd
-   * @returns {void} 
+   * @returns {void}
    */
   static validateArguments(cmd: Map<string, string>): void {
     const userName = cmd.get('username')

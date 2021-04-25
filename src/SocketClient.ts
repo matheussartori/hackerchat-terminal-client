@@ -12,7 +12,7 @@ export default class SocketClient {
   /**
    * SocketClient constructor.
    *
-   * @param {{hostUri: string, port: number, protocol: 'http' | 'https'}} param0 
+   * @param {Types.Socket} socket 
    */
   constructor({ hostUri, port, protocol }: Types.Socket) {
     this.host = hostUri
@@ -25,6 +25,7 @@ export default class SocketClient {
    *
    * @param {string} event 
    * @param {Types.Join} message 
+   * @returns {void}
    */
   sendMessage(event: string, message: Types.Join): void {
     this.serverConnection.write(JSON.stringify({ event, message }))
@@ -33,8 +34,9 @@ export default class SocketClient {
   /**
    * Attach the events based on the function name.
    * Calls the function dynamically, the name of the event equals the name of the function.
-   * 
+   *
    * @param {Event} events
+   * @returns {void}
    */
   attachEvents(events: Event): void {
     this.serverConnection.on('data', data => {
@@ -68,7 +70,7 @@ export default class SocketClient {
   /**
    * Create the socket connection (client side).
    *
-   * @returns {Promise} upgrade
+   * @returns {Promise<NodeJS.Socket>} socket
    */
   async createConnection(): Promise<NodeJS.Socket> {
     const options = {
@@ -91,6 +93,8 @@ export default class SocketClient {
 
   /**
    * Entry point for start the socket client.
+   *
+   * @returns {Promise<void>}
    */
   async initialize(): Promise<void> {
     this.serverConnection = await this.createConnection()

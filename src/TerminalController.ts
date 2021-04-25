@@ -7,11 +7,6 @@ export default class TerminalController {
   private usersColors = new Map()
 
   /**
-   * TerminalController constructor.
-   */
-  constructor() {}
-
-  /**
    * Generates a random hex color. Used for painting the nicknames.
    *
    * @returns {string} color
@@ -39,7 +34,7 @@ export default class TerminalController {
    * Event dispatched on message sent.
    *
    * @param {EventEmitter} eventEmitter 
-   * @returns {() => void} void
+   * @returns {() => void}
    */
   private onInputReceived(eventEmitter: EventEmitter): () => void {
     return function () {
@@ -55,7 +50,7 @@ export default class TerminalController {
    * On message received handler.
    *
    * @param {Types.MessageReceived} params
-   * @returns {(msg: Types.Message) => void} mesage
+   * @returns {(msg: Types.Message) => void}
    */
   private onMessageReceived({ screen, chat }: Types.MessageReceived): (msg: Types.Message) => void {
     return msg => {
@@ -71,7 +66,7 @@ export default class TerminalController {
    * On log changed handler.
    *
    * @param {Types.LogChanged} params 
-   * @returns {(msg: string) => void} void
+   * @returns {(msg: string) => void}
    */
   private onLogChanged({ screen, activityLog }: Types.LogChanged): (msg: string) => void {
     return (msg: string) => {
@@ -86,8 +81,8 @@ export default class TerminalController {
   /**
    * On status changed handler.
    *
-   * @param {Types.StatusChanged} params 
-   * @returns {users: []) => void} void
+   * @param {Types.StatusChanged} statusChanged 
+   * @returns {users: []) => void}
    */
   private onStatusChanged({ screen, status }: Types.StatusChanged): (users: []) => void {
     return (users: []) => {
@@ -112,11 +107,8 @@ export default class TerminalController {
    * @param {ComponentsBuilder} components 
    */
   private registerEvents(eventEmitter: EventEmitter, components: ComponentBuilder) {
-    // @ts-ignore
     eventEmitter.on(EventTypes.events.app.MESSAGE_RECEIVED, this.onMessageReceived(components))
-    // @ts-ignore
     eventEmitter.on(EventTypes.events.app.ACTIVITYLOG_UPDATED, this.onLogChanged(components))
-    // @ts-ignore
     eventEmitter.on(EventTypes.events.app.STATUS_UPDATED, this.onStatusChanged(components))
   }
 
@@ -127,7 +119,7 @@ export default class TerminalController {
    */
   async initializeTable(eventEmitter: EventEmitter) {
     const components = new ComponentBuilder()
-      .setScreen({ title: 'HackerChat - Matheus Sartori' })
+      .setScreen({ title: 'hackerchat - Redstone Solutions' })
       .setLayoutComponent()
       .setInputComponent(this.onInputReceived(eventEmitter))
       .setChatComponent()
@@ -137,9 +129,7 @@ export default class TerminalController {
 
     // @ts-ignore
     this.registerEvents(eventEmitter, components)
-    // @ts-ignore
     components.input.focus()
-    // @ts-ignore
     components.screen.render()
   }
 }

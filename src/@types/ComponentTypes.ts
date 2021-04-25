@@ -16,10 +16,10 @@ export type Screen = {
 }
 
 export type Component = {
-  screen: Widgets.Screen | undefined
-  layout: Widgets.LayoutElement | undefined
-  input: Widgets.InputElement | undefined
-  chat: Widgets.ListOptions<Widgets.ListElementStyle> | undefined
-  status: Widgets.ListOptions<Widgets.ListElementStyle> | undefined
-  activityLog: Widgets.ListOptions<Widgets.ListElementStyle> | undefined
+  screen: Widgets.Screen
+  layout?: Widgets.LayoutElement
+  input: Widgets.InputElement
+  chat: Widgets.ListOptions<Widgets.ListElementStyle>
+  status: Widgets.ListOptions<Widgets.ListElementStyle>
+  activityLog: Widgets.ListOptions<Widgets.ListElementStyle>
 }
