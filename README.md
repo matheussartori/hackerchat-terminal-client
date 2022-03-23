@@ -63,5 +63,3 @@ The hostUri argument is optional. If the host is missing, the client will connec
 If you want to close the chat, double press the "ESC" button.
 
 ---
-
-Made with ❤️ by Redstone Solutions :wave: [Join our community!](https://discord.gg/SNQXH5cKEB)
