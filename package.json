@@ -1,6 +1,6 @@
 {
-  "name": "@redstone-solutions/hackerchat-client",
-  "version": "1.0.2",
+  "name": "@matheussartori/hackerchat-client",
+  "version": "1.0.0",
   "description": "The hackerchat client allows you to connect to any hackerchat server, directly on the shell.",
   "main": "dist/index.js",
   "bin": {
@@ -10,7 +10,7 @@
     "build": "tsup",
     "dev": "tsx src/index.ts",
     "lint": "eslint src",
-    "test:ci": "vitest run --coverage",
+    "test:ci": "vitest run",
     "test:watch": "vitest"
   },
   "engines": {
@@ -23,7 +23,11 @@
     "nodejs",
     "node"
   ],
-  "author": "redstone-solutions",
+  "author": {
+    "name": "Matheus Sartori",
+    "email": "ms.sartori@outlook.com.br",
+    "url": "https://github.com/matheussartori"
+  },
   "license": "MIT",
   "dependencies": {
     "blessed": "^0.1.81",
