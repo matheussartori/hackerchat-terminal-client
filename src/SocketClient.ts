@@ -1,6 +1,7 @@
 import Event from 'events'
 import * as Types from './@types/SocketTypes'
 import http from 'http'
+import { randomBytes } from 'crypto'
 
 export default class SocketClient {
   private serverConnection!: NodeJS.Socket
@@ -73,12 +74,15 @@ export default class SocketClient {
    * @returns {Promise<NodeJS.Socket>} socket
    */
   async createConnection(): Promise<NodeJS.Socket> {
+    const wsKey = randomBytes(16).toString('base64')
     const options = {
       port: this.port,
       host: this.host,
       headers: {
         Connection: 'Upgrade',
-        Upgrade: 'websocket'
+        Upgrade: 'websocket',
+        'Sec-WebSocket-Key': wsKey,
+        'Sec-WebSocket-Version': '13',
       }
     }
 
