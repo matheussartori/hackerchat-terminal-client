@@ -72,10 +72,24 @@ npm install
 **3. Start the development client**
 
 ```bash
-npm run dev
+npm run dev -- --username YOUR_USERNAME --room ROOM_NAME
 ```
 
-> The dev server uses `tsx` for on-the-fly TypeScript execution and restarts automatically on file changes.
+The `--` separator is required to pass arguments through npm to the underlying script.
+
+**Example — public test server:**
+
+```bash
+npm run dev -- --username alice --room general
+```
+
+**Example — local Hackerchat Server:**
+
+```bash
+npm run dev -- --username alice --room general --hostUri ws://localhost:9898
+```
+
+> `tsx` executes TypeScript directly and restarts automatically on file changes.
 
 **Other useful commands**
 
@@ -84,6 +98,8 @@ npm run dev
 | `npm run build` | Compile TypeScript to `dist/` via `tsup` |
 
 ## Usage
+
+> The `hackerchat` command below is available after a global install (`npm install -g`). If running locally from source, replace `hackerchat` with `npm run dev --` (see [Running Locally](#running-locally)).
 
 ### Connecting to a server
 
