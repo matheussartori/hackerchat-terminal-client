@@ -7,10 +7,11 @@
     "hackerchat": "dist/index.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsup",
+    "dev": "tsx watch src/index.ts"
   },
   "engines": {
-    "node": ">=15"
+    "node": ">=24"
   },
   "keywords": [
     "chat",
@@ -23,13 +24,13 @@
   "license": "MIT",
   "dependencies": {
     "blessed": "^0.1.81",
-    "chalk": "^4.1.1"
+    "chalk": "^5.4.1"
   },
   "devDependencies": {
     "@types/blessed": "^0.1.17",
-    "@types/node": "^14.14.41",
-    "nodemon": "^2.0.7",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.4"
+    "@types/node": "^24.0.0",
+    "tsup": "^8.5.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
   }
 }
