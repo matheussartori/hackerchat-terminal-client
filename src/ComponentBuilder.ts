@@ -29,14 +29,14 @@ export default class ComponentBuilder {
 
   /**
    * Set the screen component.
-   * 
-   * @param {{title: string}} params 
-   * @returns 
+   *
+   * @param {{title: string}} params
+   * @returns
    */
   setScreen({ title }: Types.Screen): ComponentBuilder {
     this.screen = blessed.screen({
       smartCSR: true,
-      title,
+      title
     })
 
     this.screen.key(['C-c'], () => process.exit(0))
@@ -46,7 +46,7 @@ export default class ComponentBuilder {
 
   /**
    * Set the layout component.
-   * 
+   *
    * @returns {ComponentBuilder} this
    */
   setLayoutComponent(): ComponentBuilder {
@@ -62,8 +62,8 @@ export default class ComponentBuilder {
 
   /**
    * Set the textarea component.
-   * 
-   * @param {() => void} onEnterPressed 
+   *
+   * @param {() => void} onEnterPressed
    * @returns {ComponentBuilder} this
    */
   setInputComponent(onEnterPressed: () => void): ComponentBuilder {
@@ -90,7 +90,7 @@ export default class ComponentBuilder {
 
   /**
    * Set the chat history component.
-   * 
+   *
    * @returns {ComponentBuilder} this
    */
   setChatComponent(): ComponentBuilder {
@@ -109,7 +109,7 @@ export default class ComponentBuilder {
 
   /**
    * Set the status component (users on room).
-   * 
+   *
    * @returns {ComponentBuilder} this
    */
   setStatusComponent(): ComponentBuilder {
@@ -127,7 +127,7 @@ export default class ComponentBuilder {
 
   /**
    * Set the activity log component (users that joined and exited).
-   * 
+   *
    * @returns {ComponentBuilder} this
    */
   setActivityLogComponent(): ComponentBuilder {
@@ -145,10 +145,10 @@ export default class ComponentBuilder {
 
   /**
    * Build and return all rendered components.
-   * 
+   *
    * @returns {Types.Component} components
    */
-  build(): Types.Component  {
+  build(): Types.Component {
     const components = {
       screen: this.screen,
       input: this.input,

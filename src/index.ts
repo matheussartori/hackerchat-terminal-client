@@ -1,30 +1,30 @@
-import Events from "events";
-import CliConfig from "./CliConfig";
-import TerminalController from "./TerminalController";
-import SocketClient from "./SocketClient";
-import EventManager from "./EventManager";
+import Events from 'events'
+import CliConfig from './CliConfig'
+import TerminalController from './TerminalController'
+import SocketClient from './SocketClient'
+import EventManager from './EventManager'
 
-const [,, ...commands] = process.argv;
-const config = CliConfig.parseArguments(commands);
+const [,, ...commands] = process.argv
+const config = CliConfig.parseArguments(commands)
 
-const componentEmitter = new Events();
-const socketClient = new SocketClient(config);
+const componentEmitter = new Events()
+const socketClient = new SocketClient(config)
 socketClient
   .initialize()
   .then(() => {
-    const eventManager = new EventManager({ componentEmitter, socketClient });
-    const events = eventManager.getEvents();
+    const eventManager = new EventManager({ componentEmitter, socketClient })
+    const events = eventManager.getEvents()
     // @ts-ignore
-    socketClient.attachEvents(events);
+    socketClient.attachEvents(events)
     const data = {
       roomId: config.room,
-      userName: config.username,
-    };
-    eventManager.joinRoomWaitMessages(data);
+      userName: config.username
+    }
+    eventManager.joinRoomWaitMessages(data)
 
-    const controller = new TerminalController();
-    controller.initializeTable(componentEmitter);
+    const controller = new TerminalController()
+    controller.initializeTable(componentEmitter)
   })
-  .catch((error) => {
-    console.error("Error starting the terminal client for hackerchat.");
-  });
+  .catch(error => {
+    console.error('Error starting the terminal client for hackerchat.', error)
+  })

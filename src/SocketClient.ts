@@ -144,7 +144,7 @@ export default class SocketClient {
         messages
           .flatMap((msg: string) => msg.split('\n').filter(Boolean))
           .map((line: string) => JSON.parse(line))
-          .map(({ event, message }: Types.Message) => {
+          .forEach(({ event, message }: Types.Message) => {
             this.serverListener.emit(event, message)
           })
       } catch (_error) {
@@ -180,7 +180,7 @@ export default class SocketClient {
         Connection: 'Upgrade',
         Upgrade: 'websocket',
         'Sec-WebSocket-Key': wsKey,
-        'Sec-WebSocket-Version': '13',
+        'Sec-WebSocket-Version': '13'
       }
     }
 
