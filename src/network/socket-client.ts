@@ -1,8 +1,8 @@
 import { EventEmitter } from 'events'
 import http from 'http'
 import { randomBytes } from 'crypto'
-import type { ServerConfig, SocketMessage } from '../types'
-import { encodeTextFrame, encodeControlFrame, WebSocketFrameDecoder } from './web-socket-frame'
+import type { ServerConfig, SocketMessage } from '../types/index.js'
+import { encodeTextFrame, encodeControlFrame, WebSocketFrameDecoder } from './web-socket-frame.js'
 
 export class SocketClient extends EventEmitter {
   private socket!: NodeJS.Socket

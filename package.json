@@ -2,6 +2,7 @@
   "name": "@matheussartori/hackerchat-client",
   "version": "1.0.0",
   "description": "The hackerchat client allows you to connect to any hackerchat server, directly on the shell.",
+  "type": "module",
   "main": "dist/index.js",
   "bin": {
     "hackerchat": "dist/index.js"
@@ -30,12 +31,17 @@
   },
   "license": "MIT",
   "dependencies": {
-    "blessed": "^0.1.81",
-    "chalk": "^5.4.1"
+    "chalk": "^5.4.1",
+    "figures": "^6.1.0",
+    "ink": "^7.0.4",
+    "ink-big-text": "^2.0.0",
+    "ink-gradient": "^4.0.0",
+    "ink-text-input": "^6.0.0",
+    "react": "^19.2.6"
   },
   "devDependencies": {
-    "@types/blessed": "^0.1.17",
     "@types/node": "^24.0.0",
+    "@types/react": "^19.2.15",
     "@vitest/coverage-v8": "^4.1.7",
     "eslint": "^9.39.4",
     "neostandard": "^0.13.0",

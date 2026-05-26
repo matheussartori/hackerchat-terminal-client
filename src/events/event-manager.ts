@@ -1,8 +1,8 @@
 import EventEmitter from 'events'
-import { AppEvents, SocketEvents } from './app-events'
-import { UserStore } from '../state/user-store'
-import type { SocketClient } from '../network/socket-client'
-import type { ChatMessage, JoinPayload, User } from '../types'
+import { AppEvents, SocketEvents } from './app-events.js'
+import { UserStore } from '../state/user-store.js'
+import type { SocketClient } from '../network/socket-client.js'
+import type { ChatMessage, JoinPayload, User } from '../types/index.js'
 
 export class EventManager {
   private readonly userStore = new UserStore()

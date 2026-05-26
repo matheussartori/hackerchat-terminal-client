@@ -8,9 +8,9 @@ describe('UserColorService', () => {
     service = new UserColorService()
   })
 
-  it('returns a color string in the expected format', () => {
+  it('returns a color string in the expected hex format', () => {
     const color = service.getColor('alice')
-    expect(color).toMatch(/^#[0-9a-f]{6}-fg$/)
+    expect(color).toMatch(/^#[0-9a-f]{6}$/)
   })
 
   it('returns the same color for the same username (cache)', () => {
@@ -19,7 +19,13 @@ describe('UserColorService', () => {
     expect(first).toBe(second)
   })
 
-  it('assigns independent colors to different usernames', () => {
+  it('is deterministic: same username always maps to the same color', () => {
+    const a = new UserColorService()
+    const b = new UserColorService()
+    expect(a.getColor('alice')).toBe(b.getColor('alice'))
+  })
+
+  it('assigns colors from the palette to many users', () => {
     const colors = new Set(
       Array.from({ length: 20 }, (_, i) => service.getColor(`user${i}`))
     )
