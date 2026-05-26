@@ -18,7 +18,7 @@ export default class TerminalController {
   /**
    * Verifies if the username already have a color. If false, generates a new color and saves on #usersColor map.
    *
-   * @param {string} userName 
+   * @param {string} userName
    * @returns {string} color
    */
   private getUserColor(userName: string): string {
@@ -33,11 +33,11 @@ export default class TerminalController {
   /**
    * Event dispatched on message sent.
    *
-   * @param {EventEmitter} eventEmitter 
+   * @param {EventEmitter} eventEmitter
    * @returns {() => void}
    */
   private onInputReceived(eventEmitter: EventEmitter): () => void {
-    return function () {
+    return function() {
       // @ts-ignore
       const message = this.getValue()
       eventEmitter.emit(EventTypes.events.app.MESSAGE_SENT, message)
@@ -65,12 +65,12 @@ export default class TerminalController {
   /**
    * On log changed handler.
    *
-   * @param {Types.LogChanged} params 
+   * @param {Types.LogChanged} params
    * @returns {(msg: string) => void}
    */
   private onLogChanged({ screen, activityLog }: Types.LogChanged): (msg: string) => void {
     return (msg: string) => {
-      const [userName] = msg.split('/\s/')
+      const [userName] = msg.split(/\s/)
       const color = this.getUserColor(userName)
       activityLog.addItem(`{${color}}{bold}${msg.toString()}{/}`)
 
@@ -81,7 +81,7 @@ export default class TerminalController {
   /**
    * On status changed handler.
    *
-   * @param {Types.StatusChanged} statusChanged 
+   * @param {Types.StatusChanged} statusChanged
    * @returns {users: []) => void}
    */
   private onStatusChanged({ screen, status }: Types.StatusChanged): (users: []) => void {
@@ -102,8 +102,8 @@ export default class TerminalController {
   /**
    * Register the events.
    *
-   * @param {EventEmitter} eventEmitter 
-   * @param {ComponentsBuilder} components 
+   * @param {EventEmitter} eventEmitter
+   * @param {ComponentsBuilder} components
    */
   private registerEvents(eventEmitter: EventEmitter, components: ComponentBuilder) {
     eventEmitter.on(EventTypes.events.app.MESSAGE_RECEIVED, this.onMessageReceived(components))
@@ -114,7 +114,7 @@ export default class TerminalController {
   /**
    * Initialize the hacker chat.
    *
-   * @param {EventEmitter} eventEmitter 
+   * @param {EventEmitter} eventEmitter
    */
   async initializeTable(eventEmitter: EventEmitter) {
     const components = new ComponentBuilder()

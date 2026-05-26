@@ -12,7 +12,7 @@ export default class CliConfig {
 
   /**
    * CliConfig constructor.
-   * 
+   *
    * @param {Types.ClientSettings} clientSettings
    */
   constructor({ username, hostUri = DEFAULT_URL, room }: Types.ClientSettings) {
@@ -29,8 +29,8 @@ export default class CliConfig {
 
   /**
    * Parse the arguments and call the class constructor, to parse the map to an object.
-   * 
-   * @param {string[]} commands 
+   *
+   * @param {string[]} commands
    * @returns {CliConfig} CliConfig
    */
   static parseArguments(commands: string[]): CliConfig {
@@ -63,7 +63,7 @@ export default class CliConfig {
     const userName = cmd.get('username')
     const room = cmd.get('room')
     let error = false
-    
+
     if (typeof userName === 'undefined' || userName === null) {
       console.error(chalk.red('ERROR!'), 'You need to specify the username with the --username flag.')
       error = true

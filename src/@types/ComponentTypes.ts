@@ -1,4 +1,4 @@
-import { Widgets} from 'blessed'
+import { Widgets } from 'blessed'
 
 export type BaseComponent = {
   border: string
