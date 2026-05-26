@@ -89,7 +89,7 @@ npm run dev -- --username alice --room general
 npm run dev -- --username alice --room general --hostUri ws://localhost:9898
 ```
 
-> `tsx` executes TypeScript directly and restarts automatically on file changes.
+> `tsx` executes TypeScript directly without a build step. Watch mode is intentionally not used because `tsx watch` reads from `stdin` to support manual restarts (Enter key), which conflicts with the `blessed` raw-mode keyboard input and would restart the client on every keystroke.
 
 **Other useful commands**
 

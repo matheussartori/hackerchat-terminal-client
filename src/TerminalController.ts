@@ -86,16 +86,15 @@ export default class TerminalController {
    */
   private onStatusChanged({ screen, status }: Types.StatusChanged): (users: []) => void {
     return (users: []) => {
+      const items = [
+        '{bold}Users on room{/}',
+        ...users.map((userName: string) => {
+          const color = this.getUserColor(userName)
+          return `{${color}}{bold}${userName}{/}`
+        })
+      ]
       // @ts-ignore
-      const { content } = status.items.shift()
-      status.clearItems()
-      status.addItem(content)
-
-      users.forEach(userName => {
-        const color = this.getUserColor(userName)
-        status.addItem(`{${color}}{bold}${userName}{/}`)
-      })
-
+      status.setItems(items)
       screen.render()
     }
   }

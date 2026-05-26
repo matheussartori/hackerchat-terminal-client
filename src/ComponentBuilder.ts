@@ -37,10 +37,9 @@ export default class ComponentBuilder {
     this.screen = blessed.screen({
       smartCSR: true,
       title,
-      autoPadding: true
     })
 
-    this.screen.key(['escape', 'q', 'C-c'], () => process.exit(0))
+    this.screen.key(['C-c'], () => process.exit(0))
 
     return this
   }
@@ -55,7 +54,7 @@ export default class ComponentBuilder {
       parent: this.screen,
       layout: 'inline',
       width: '100%',
-      height: '100%'
+      height: '90%'
     })
 
     return this
@@ -101,7 +100,7 @@ export default class ComponentBuilder {
       parent: this.layout,
       align: 'left',
       width: '50%',
-      height: '90%',
+      height: '100%',
       items: ['{bold}Messenger{/}']
     })
 
@@ -119,7 +118,7 @@ export default class ComponentBuilder {
       ...this.baseComponent(),
       parent: this.layout,
       width: '25%',
-      height: '90%',
+      height: '100%',
       items: ['{bold}Users on room{/}']
     })
 
@@ -137,7 +136,7 @@ export default class ComponentBuilder {
       ...this.baseComponent(),
       parent: this.layout,
       width: '25%',
-      height: '90%',
+      height: '100%',
       items: ['{bold}Activity log{/}']
     })
 
