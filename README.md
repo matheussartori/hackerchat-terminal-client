@@ -148,6 +148,7 @@ No setup required — just run the client without `--hostUri` and it will connec
 ## Related Projects
 
 - [hackerchat-server](https://github.com/matheussartori/hackerchat-server) — The WebSocket server that powers Hackerchat
+- [hackerchat-js-sdk](https://github.com/matheussartori/hackerchat-js-sdk) — JavaScript/TypeScript SDK with framework-agnostic client and React bindings
 
 ## License
 
