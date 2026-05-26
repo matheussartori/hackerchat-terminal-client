@@ -17,11 +17,10 @@
 <p align="center">
   <a href="#overview">Overview</a> ·
   <a href="#features">Features</a> ·
-  <a href="#prerequisites">Prerequisites</a> ·
-  <a href="#installation">Installation</a> ·
-  <a href="#running-locally">Running Locally</a> ·
+  <a href="#usage">Usage</a> ·
   <a href="#usage">Usage</a> ·
   <a href="#public-test-server">Public Test Server</a> ·
+  <a href="#development">Development</a> ·
   <a href="#related-projects">Related Projects</a>
 </p>
 
@@ -39,22 +38,61 @@ Because the server is client-agnostic, this client can connect to any Hackerchat
 - Zero-config connection to the public test server
 - Full TypeScript source
 
-## Prerequisites
+## Usage
 
-- **Node.js** `>= 24`
-- **npm** `>= 10`
+### Connecting to a server
 
-## Installation
+Run directly with `npx` — no installation required:
 
-Install the client globally from npm:
+```bash
+npx @redstone-solutions/hackerchat-client --username YOUR_USERNAME --room ROOM_NAME
+```
+
+To connect to a specific server, pass the `--hostUri` flag:
+
+```bash
+npx @redstone-solutions/hackerchat-client --username YOUR_USERNAME --room ROOM_NAME --hostUri SERVER_URL
+```
+
+| Flag         | Required | Description                                                     |
+| ------------ | -------- | --------------------------------------------------------------- |
+| `--username` | Yes      | Display name used in the chat room                              |
+| `--room`     | Yes      | Room ID to join or create                                       |
+| `--hostUri`  | No       | WebSocket URL of the server. Defaults to the public test server |
+
+**Example — public test server:**
+
+```bash
+npx @redstone-solutions/hackerchat-client --username alice --room general
+```
+
+**Example — local server:**
+
+```bash
+npx @redstone-solutions/hackerchat-client --username alice --room general --hostUri ws://localhost:9898
+```
+
+### Closing the chat
+
+Double-press the **ESC** key to exit.
+
+### Global install (optional)
+
+If you use Hackerchat frequently and prefer a shorter command, install it globally:
 
 ```bash
 npm install -g @redstone-solutions/hackerchat-client
 ```
 
-After installation the `hackerchat` command is available in your shell.
+Then use the `hackerchat` command directly:
 
-## Running Locally
+```bash
+hackerchat --username alice --room general
+```
+
+## Development
+
+> This section is for contributors who want to run or modify the client from source.
 
 **1. Clone the repository**
 
@@ -96,38 +134,6 @@ npm run dev -- --username alice --room general --hostUri ws://localhost:9898
 | Command         | Description                              |
 | --------------- | ---------------------------------------- |
 | `npm run build` | Compile TypeScript to `dist/` via `tsup` |
-
-## Usage
-
-> The `hackerchat` command below is available after a global install (`npm install -g`). If running locally from source, replace `hackerchat` with `npm run dev --` (see [Running Locally](#running-locally)).
-
-### Connecting to a server
-
-```bash
-hackerchat --username YOUR_USERNAME --room ROOM_NAME --hostUri SERVER_URL
-```
-
-| Flag         | Required | Description                                                     |
-| ------------ | -------- | --------------------------------------------------------------- |
-| `--username` | Yes      | Display name used in the chat room                              |
-| `--room`     | Yes      | Room ID to join or create                                       |
-| `--hostUri`  | No       | WebSocket URL of the server. Defaults to the public test server |
-
-**Example — public test server:**
-
-```bash
-hackerchat --username alice --room general
-```
-
-**Example — local server:**
-
-```bash
-hackerchat --username alice --room general --hostUri ws://localhost:9898
-```
-
-### Closing the chat
-
-Double-press the **ESC** key to exit.
 
 ## Public Test Server
 

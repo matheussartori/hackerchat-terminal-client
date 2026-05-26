@@ -1,0 +1,19 @@
+# Source
+src/
+
+# Tests
+test/
+
+# Config files
+.github/
+.claude/
+eslint.config.mjs
+tsconfig.json
+tsup.config.ts
+vitest.config.ts
+
+# Dev dependencies artifacts
+node_modules/
+
+# Misc
+*.lock
