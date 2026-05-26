@@ -23,7 +23,8 @@ export default class CliConfig {
 
     this.hostUri = hostname
     this.port = port
-    this.protocol = protocol.replace(/\W/, '')
+    const rawProtocol = protocol.replace(/\W/g, '')
+    this.protocol = rawProtocol === 'wss' ? 'https' : rawProtocol === 'ws' ? 'http' : rawProtocol
   }
 
   /**
