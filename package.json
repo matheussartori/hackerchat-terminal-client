@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx src/index.ts"
   },
   "engines": {
     "node": ">=24"
