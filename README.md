@@ -1,65 +1,132 @@
-<p align="center">
-  <img alt="Hackerchat Terminal Client" height="350" src="https://github.com/redstone-solutions/hackerchat-terminal-client/raw/main/assets/hackerchat-terminal-client.png" />
-</p>
-
-<h3 align="center">
-  Hackerchat Terminal Client
-</h3>
-
-<blockquote align="center">"This software is a continued idea of the project created by Erick Wendel."</blockquote>
-<br>
+<h1 align="center">Hackerchat Terminal Client</h1>
 
 <p align="center">
-  <a href="https://redstonesolutions.com.br">
-    <img alt="Made by Redstone Solutions" src="https://img.shields.io/badge/made%20by-Redstone%20Solutions-%2304D361">
-  </a>
-
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
+  A terminal-based WebSocket chat client built with Node.js and TypeScript.
 </p>
 
 <p align="center">
-  <a href="#about-the-project">About the project</a><br>
-  <a href="#installation">Installation</a><br>
-  <a href="#connecting-to-a-server">Connecting to a server</a><br>
-  <a href="#closing-the-chat">Closing the chat</a><br>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D24-brightgreen?logo=node.js&logoColor=white" alt="Node.js version" /></a>
+  <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-6-blue?logo=typescript&logoColor=white" alt="TypeScript" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License" /></a>
 </p>
-
-## About the project
-
-Hacker chat is a http service that works with websockets. It allows users to create and connect in rooms and change messages.
-
-It is possible to create any interface to communicate with it, web, mobile, desktop, etc.
-
-The terminal client allows you to connect to any hackerchat server, directly on the shell.
 
 <p align="center">
-  <img alt="Hackerchat Terminal Client" src="https://github.com/redstone-solutions/hackerchat-terminal-client/raw/main/assets/terminal.png" />
+  <a href="#overview">Overview</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#prerequisites">Prerequisites</a> ·
+  <a href="#installation">Installation</a> ·
+  <a href="#running-locally">Running Locally</a> ·
+  <a href="#usage">Usage</a> ·
+  <a href="#public-test-server">Public Test Server</a> ·
+  <a href="#related-projects">Related Projects</a>
 </p>
 
-### Installation
+<p align="center">
+  <img alt="Hackerchat Terminal Client" src="https://github.com/matheussartori/hackerchat-terminal-client/raw/main/assets/terminal.png" />
+</p>
 
-To install the client, you'll need to run:
+## Overview
+
+Hackerchat Terminal Client is a TUI (terminal user interface) that connects to any [Hackerchat Server](https://github.com/matheussartori/hackerchat-server) instance over WebSockets. It lets you create and join rooms and exchange messages in real time — entirely from the shell.
+
+Because the server is client-agnostic, this client can connect to any Hackerchat Server deployment, whether it is running locally, on a VPS, or at the public test address.
+
+## Features
+
+- Room-based real-time messaging directly in the terminal
+- TUI rendered with `blessed` — no browser required
+- Coloured output via `chalk`
+- Zero-config connection to the public test server
+- Full TypeScript source
+
+## Prerequisites
+
+- **Node.js** `>= 24`
+- **npm** `>= 10`
+
+## Installation
+
+Install the client globally from npm:
 
 ```bash
 npm install -g @redstone-solutions/hackerchat-client
 ```
-or...
+
+After installation the `hackerchat` command is available in your shell.
+
+## Running Locally
+
+**1. Clone the repository**
+
 ```bash
-yarn global add @redstone-solutions/hackerchat-client
+git clone https://github.com/matheussartori/hackerchat-terminal-client.git
+cd hackerchat-terminal-client
 ```
 
-### Connecting to a server
+**2. Install dependencies**
 
-For connecting with a server, you'll need to run:
+```bash
+npm install
+```
+
+**3. Start the development client**
+
+```bash
+npm run dev
+```
+
+> The dev server uses `tsx` for on-the-fly TypeScript execution and restarts automatically on file changes.
+
+**Other useful commands**
+
+| Command | Description |
+|---|---|
+| `npm run build` | Compile TypeScript to `dist/` via `tsup` |
+
+## Usage
+
+### Connecting to a server
 
 ```bash
 hackerchat --username YOUR_USERNAME --room ROOM_NAME --hostUri SERVER_URL
 ```
 
-The hostUri argument is optional. If the host is missing, the client will connect with the global server.
+| Flag | Required | Description |
+|---|---|---|
+| `--username` | Yes | Display name used in the chat room |
+| `--room` | Yes | Room ID to join or create |
+| `--hostUri` | No | WebSocket URL of the server. Defaults to the public test server |
+
+**Example — public test server:**
+
+```bash
+hackerchat --username alice --room general
+```
+
+**Example — local server:**
+
+```bash
+hackerchat --username alice --room general --hostUri ws://localhost:9898
+```
 
 ### Closing the chat
 
-If you want to close the chat, double press the "ESC" button.
+Double-press the **ESC** key to exit.
 
----
+## Public Test Server
+
+A public instance of Hackerchat Server is available for testing at:
+
+```
+ws://hackerchatserver.mattsartori.com.br
+```
+
+No setup required — just run the client without `--hostUri` and it will connect automatically.
+
+## Related Projects
+
+- [hackerchat-server](https://github.com/matheussartori/hackerchat-server) — The WebSocket server that powers Hackerchat
+
+## License
+
+[MIT](./LICENSE) © [Matheus Sartori](https://github.com/matheussartori)
