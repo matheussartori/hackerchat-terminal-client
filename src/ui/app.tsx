@@ -162,6 +162,7 @@ export function App({ emitter, userName, room }: AppProps) {
         userName={userName}
         userColor={colorService.getColor(userName)}
         scrolledUp={scrollOffset > 0}
+        cols={cols}
       />
     </Box>
   )

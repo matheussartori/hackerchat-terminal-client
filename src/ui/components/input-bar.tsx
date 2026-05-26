@@ -1,5 +1,5 @@
 import { Box, Text } from 'ink'
-import TextInput from 'ink-text-input'
+import { ScrollingTextInput } from './scrolling-text-input.js'
 
 type InputBarProps = {
   value: string
@@ -8,12 +8,15 @@ type InputBarProps = {
   userName: string
   userColor: string
   scrolledUp?: boolean
+  cols: number
 }
 
-export function InputBar({ value, onChange, onSubmit, userName, userColor, scrolledUp }: InputBarProps) {
+export function InputBar({ value, onChange, onSubmit, userName, userColor, scrolledUp, cols }: InputBarProps) {
   const charCount = value.length
   const maxLength = 500
   const nearLimit = charCount > maxLength * 0.85
+  const counterWidth = `${maxLength}/${maxLength}`.length
+  const inputWidth = Math.max(1, cols - userName.length - 3 - counterWidth - 4)
 
   return (
     <Box flexDirection='column' flexShrink={0}>
@@ -26,12 +29,14 @@ export function InputBar({ value, onChange, onSubmit, userName, userColor, scrol
       >
         <Text color={userColor} bold>{userName}</Text>
         <Text color='gray' dimColor> › </Text>
-        <Box flexGrow={1}>
-          <TextInput
+        <Box flexGrow={1} width={inputWidth} overflow='hidden'>
+          <ScrollingTextInput
             value={value}
             onChange={onChange}
             onSubmit={onSubmit}
             placeholder='type a message and press enter...'
+            width={inputWidth}
+            maxLength={maxLength}
           />
         </Box>
         <Text color={nearLimit ? 'red' : 'gray'} dimColor={!nearLimit}>
