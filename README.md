@@ -11,6 +11,10 @@
 </p>
 
 <p align="center">
+  <img src="./.github/assets/screenshot.png" alt="Hackerchat Terminal Client screenshot" width="800" />
+</p>
+
+<p align="center">
   <a href="#overview">Overview</a> ·
   <a href="#features">Features</a> ·
   <a href="#prerequisites">Prerequisites</a> ·
