@@ -22,7 +22,7 @@ export class ComponentBuilder {
 
   setScreen({ title }: { title: string }): this {
     this.screen = blessed.screen({ smartCSR: true, title })
-    this.screen.key(['C-c'], () => process.exit(0))
+    this.screen.key(['C-c', 'escape'], () => process.exit(0))
     return this
   }
 
@@ -46,6 +46,7 @@ export class ComponentBuilder {
       style: { fg: '#f6f6f6', bg: '#353535' }
     })
     this.input.key('enter', onEnterPressed)
+    this.input.key(['escape', 'C-c'], () => process.exit(0))
     return this
   }
 
