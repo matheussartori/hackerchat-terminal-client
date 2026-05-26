@@ -21,10 +21,6 @@
   <a href="#related-projects">Related Projects</a>
 </p>
 
-<p align="center">
-  <img alt="Hackerchat Terminal Client" src="https://github.com/matheussartori/hackerchat-terminal-client/raw/main/assets/terminal.png" />
-</p>
-
 ## Overview
 
 Hackerchat Terminal Client is a TUI (terminal user interface) that connects to any [Hackerchat Server](https://github.com/matheussartori/hackerchat-server) instance over WebSockets. It lets you create and join rooms and exchange messages in real time — entirely from the shell.
@@ -93,8 +89,8 @@ npm run dev -- --username alice --room general --hostUri ws://localhost:9898
 
 **Other useful commands**
 
-| Command | Description |
-|---|---|
+| Command         | Description                              |
+| --------------- | ---------------------------------------- |
 | `npm run build` | Compile TypeScript to `dist/` via `tsup` |
 
 ## Usage
@@ -107,11 +103,11 @@ npm run dev -- --username alice --room general --hostUri ws://localhost:9898
 hackerchat --username YOUR_USERNAME --room ROOM_NAME --hostUri SERVER_URL
 ```
 
-| Flag | Required | Description |
-|---|---|---|
-| `--username` | Yes | Display name used in the chat room |
-| `--room` | Yes | Room ID to join or create |
-| `--hostUri` | No | WebSocket URL of the server. Defaults to the public test server |
+| Flag         | Required | Description                                                     |
+| ------------ | -------- | --------------------------------------------------------------- |
+| `--username` | Yes      | Display name used in the chat room                              |
+| `--room`     | Yes      | Room ID to join or create                                       |
+| `--hostUri`  | No       | WebSocket URL of the server. Defaults to the public test server |
 
 **Example — public test server:**
 

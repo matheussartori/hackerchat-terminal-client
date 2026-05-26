@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import type { ClientSettings, ServerConfig } from '../types'
+import type { ClientSettings, ServerConfig } from '../types/index.js'
 
 const DEFAULT_URL = 'https://hackerchat-server.herokuapp.com'
 

@@ -1,4 +1,4 @@
-import type { User } from '../types'
+import type { User } from '../types/index.js'
 
 export class UserStore {
   private readonly users = new Map<string, string>()
