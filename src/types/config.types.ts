@@ -3,3 +3,9 @@ export type ClientSettings = {
   hostUri: string
   room: string
 }
+
+export type ServerConfig = {
+  hostUri: string
+  port: string
+  protocol: string
+}
