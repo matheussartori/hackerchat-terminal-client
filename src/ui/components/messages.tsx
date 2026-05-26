@@ -45,7 +45,7 @@ export function Messages({ messages, colorService, height, scrollOffset }: Messa
             </Box>
           )
           : visible.map(msg => (
-            <Text key={msg.id} wrap='truncate-end'>
+            <Text key={msg.id} wrap='wrap'>
               <Text color='gray' dimColor>{formatShortTime(msg.timestamp)} </Text>
               <Text color={colorService.getColor(msg.userName)} bold>
                 {msg.userName}
