@@ -19,7 +19,7 @@ export function ScrollingTextInput({
   placeholder = '',
   width,
   focus = true,
-  maxLength,
+  maxLength
 }: Props) {
   const [cursorOffset, setCursorOffset] = useState(value.length)
 
