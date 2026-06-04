@@ -15,7 +15,7 @@ describe('CliConfig', () => {
 
     it('uses default server when --hostUri is omitted', () => {
       const config = CliConfig.parse(['--username', 'alice', '--room', 'general'])
-      expect(config.server.hostUri).toBe('hackerchat-server.herokuapp.com')
+      expect(config.server.hostUri).toBe('hackerchatserver.mattsartori.com.br')
       expect(config.server.protocol).toBe('https')
     })
 
