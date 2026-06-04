@@ -18,7 +18,6 @@
   <a href="#overview">Overview</a> ·
   <a href="#features">Features</a> ·
   <a href="#usage">Usage</a> ·
-  <a href="#usage">Usage</a> ·
   <a href="#public-test-server">Public Test Server</a> ·
   <a href="#development">Development</a> ·
   <a href="#related-projects">Related Projects</a>
@@ -33,8 +32,9 @@ Because the server is client-agnostic, this client can connect to any Hackerchat
 ## Features
 
 - Room-based real-time messaging directly in the terminal
-- TUI rendered with `blessed` — no browser required
-- Coloured output via `chalk`
+- TUI built with [Ink](https://github.com/vadimdemedes/ink) (React for the terminal) — no browser required
+- Per-user colours, gradient banner (`ink-gradient` / `ink-big-text`) and icons (`figures` / `chalk`)
+- Scrollback history with keyboard navigation
 - Zero-config connection to the public test server
 - Full TypeScript source
 
@@ -45,13 +45,13 @@ Because the server is client-agnostic, this client can connect to any Hackerchat
 Run directly with `npx` — no installation required:
 
 ```bash
-npx @redstone-solutions/hackerchat-client --username YOUR_USERNAME --room ROOM_NAME
+npx @matheussartori/hackerchat-client --username YOUR_USERNAME --room ROOM_NAME
 ```
 
 To connect to a specific server, pass the `--hostUri` flag:
 
 ```bash
-npx @redstone-solutions/hackerchat-client --username YOUR_USERNAME --room ROOM_NAME --hostUri SERVER_URL
+npx @matheussartori/hackerchat-client --username YOUR_USERNAME --room ROOM_NAME --hostUri SERVER_URL
 ```
 
 | Flag         | Required | Description                                                     |
@@ -63,25 +63,31 @@ npx @redstone-solutions/hackerchat-client --username YOUR_USERNAME --room ROOM_N
 **Example — public test server:**
 
 ```bash
-npx @redstone-solutions/hackerchat-client --username alice --room general
+npx @matheussartori/hackerchat-client --username alice --room general
 ```
 
 **Example — local server:**
 
 ```bash
-npx @redstone-solutions/hackerchat-client --username alice --room general --hostUri ws://localhost:9898
+npx @matheussartori/hackerchat-client --username alice --room general --hostUri ws://localhost:9898
 ```
 
-### Closing the chat
+### Keyboard shortcuts
 
-Double-press the **ESC** key to exit.
+| Key                  | Action                          |
+| -------------------- | ------------------------------- |
+| `Enter`              | Send the current message        |
+| `Page Up` / `Page Down` | Scroll the message history a page at a time |
+| `Ctrl+U` / `Ctrl+D`  | Scroll the message history one line at a time |
+| `Home` / `End`       | Jump to the oldest / newest message |
+| `Esc` or `Ctrl+C`    | Exit the client                 |
 
 ### Global install (optional)
 
 If you use Hackerchat frequently and prefer a shorter command, install it globally:
 
 ```bash
-npm install -g @redstone-solutions/hackerchat-client
+npm install -g @matheussartori/hackerchat-client
 ```
 
 Then use the `hackerchat` command directly:
@@ -127,20 +133,23 @@ npm run dev -- --username alice --room general
 npm run dev -- --username alice --room general --hostUri ws://localhost:9898
 ```
 
-> `tsx` executes TypeScript directly without a build step. Watch mode is intentionally not used because `tsx watch` reads from `stdin` to support manual restarts (Enter key), which conflicts with the `blessed` raw-mode keyboard input and would restart the client on every keystroke.
+> `tsx` executes TypeScript directly without a build step. Watch mode is intentionally not used because `tsx watch` reads from `stdin` to support manual restarts (Enter key), which conflicts with Ink's raw-mode keyboard input and would restart the client on every keystroke.
 
 **Other useful commands**
 
-| Command         | Description                              |
-| --------------- | ---------------------------------------- |
-| `npm run build` | Compile TypeScript to `dist/` via `tsup` |
+| Command              | Description                              |
+| -------------------- | ---------------------------------------- |
+| `npm run build`      | Compile TypeScript to `dist/` via `tsup` |
+| `npm run lint`       | Lint the `src` folder with ESLint        |
+| `npm run test:ci`    | Run the test suite once with Vitest      |
+| `npm run test:watch` | Run Vitest in watch mode                 |
 
 ## Public Test Server
 
 A public instance of Hackerchat Server is available for testing at:
 
 ```
-ws://hackerchatserver.mattsartori.com.br
+wss://hackerchatserver.mattsartori.com.br
 ```
 
 No setup required — just run the client without `--hostUri` and it will connect automatically.

@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import type { ClientSettings, ServerConfig } from '../types/index.js'
 
-const DEFAULT_URL = 'https://hackerchat-server.herokuapp.com'
+const DEFAULT_URL = 'wss://hackerchatserver.mattsartori.com.br'
 
 export class CliConfig {
   readonly username: string
