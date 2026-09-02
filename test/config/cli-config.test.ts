@@ -15,8 +15,9 @@ describe('CliConfig', () => {
 
     it('uses default server when --hostUri is omitted', () => {
       const config = CliConfig.parse(['--username', 'alice', '--room', 'general'])
-      expect(config.server.hostUri).toBe('hackerchatserver.mattsartori.com.br')
-      expect(config.server.protocol).toBe('https')
+      expect(config.server.hostUri).toBe('localhost')
+      expect(config.server.port).toBe('9898')
+      expect(config.server.protocol).toBe('http')
     })
 
     it('parses custom --hostUri', () => {

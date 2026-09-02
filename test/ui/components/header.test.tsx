@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { readFileSync } from 'node:fs'
 import { render } from 'ink-testing-library'
 import { Header } from '../../../src/ui/components/header.js'
 
@@ -21,6 +22,14 @@ afterEach(() => {
 describe('Header', () => {
   it('shows the product name', () => {
     expect(renderHeader()).toContain('hackerchat')
+  })
+
+  it('shows the version npm published', () => {
+    const { version } = JSON.parse(
+      readFileSync(new URL('../../../package.json', import.meta.url), 'utf8')
+    ) as { version: string }
+
+    expect(renderHeader()).toContain(`v${version}`)
   })
 
   it('shows the room with a hash prefix', () => {

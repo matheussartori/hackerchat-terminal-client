@@ -38,9 +38,6 @@
     "chalk": "^6.0.0",
     "figures": "^6.1.0",
     "ink": "^7.1.1",
-    "ink-big-text": "^2.0.0",
-    "ink-gradient": "^4.0.1",
-    "ink-text-input": "^6.0.0",
     "react": "^19.2.8"
   },
   "devDependencies": {
