@@ -45,7 +45,7 @@ describe('UserStore', () => {
     it('adds new users from the list', () => {
       store.updateAll([
         { id: '1', userName: 'alice' },
-        { id: '2', userName: 'bob' },
+        { id: '2', userName: 'bob' }
       ])
       expect(store.getNames()).toEqual(expect.arrayContaining(['alice', 'bob']))
     })

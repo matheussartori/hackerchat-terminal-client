@@ -6,6 +6,7 @@ test/
 
 # Config files
 .github/
+scripts/
 .claude/
 eslint.config.mjs
 tsconfig.json
@@ -14,6 +15,9 @@ vitest.config.ts
 
 # Dev dependencies artifacts
 node_modules/
+
+# Build and test artifacts
+coverage/
 
 # Misc
 *.lock
