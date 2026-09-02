@@ -1,5 +1,6 @@
 import { Box, Text } from 'ink'
 import { formatTime, useClock } from '../hooks/use-clock.js'
+import { VERSION } from '../../version.js'
 
 type HeaderProps = {
   room: string
@@ -21,7 +22,7 @@ export function Header({ room, userName, connected }: HeaderProps) {
     >
       <Box>
         <Text bold>hackerchat</Text>
-        <Text color='gray' dimColor>  v1.0.0</Text>
+        {VERSION !== '' ? <Text color='gray' dimColor>  v{VERSION}</Text> : null}
       </Box>
 
       <Box>
