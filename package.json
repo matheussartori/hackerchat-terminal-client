@@ -9,9 +9,13 @@
   },
   "scripts": {
     "build": "tsup",
+    "check:pack": "node scripts/check-pack.mjs",
     "dev": "tsx src/index.ts",
-    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src test",
+    "lint:fix": "eslint src test --fix",
     "test:ci": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "test:watch": "vitest"
   },
   "engines": {
@@ -31,24 +35,25 @@
   },
   "license": "MIT",
   "dependencies": {
-    "chalk": "^5.4.1",
+    "chalk": "^6.0.0",
     "figures": "^6.1.0",
-    "ink": "^7.0.4",
+    "ink": "^7.1.1",
     "ink-big-text": "^2.0.0",
-    "ink-gradient": "^4.0.0",
+    "ink-gradient": "^4.0.1",
     "ink-text-input": "^6.0.0",
-    "react": "^19.2.6"
+    "react": "^19.2.8"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0",
-    "@types/react": "^19.2.15",
-    "@vitest/coverage-v8": "^4.1.7",
-    "eslint": "^9.39.4",
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.18",
+    "@vitest/coverage-v8": "^4.1.11",
+    "eslint": "^9.39.5",
+    "ink-testing-library": "^4.0.0",
     "neostandard": "^0.13.0",
-    "tsup": "^8.5.0",
-    "tsx": "^4.19.4",
+    "tsup": "^8.5.1",
+    "tsx": "^4.23.13",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.60.0",
-    "vitest": "^4.1.7"
+    "typescript-eslint": "^8.69.0",
+    "vitest": "^4.1.11"
   }
 }
