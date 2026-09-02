@@ -1,7 +1,7 @@
 <h1 align="center">Hackerchat Terminal Client</h1>
 
 <p align="center">
-  A terminal-based WebSocket chat client built with Node.js and TypeScript.
+  A terminal chat client for Hackerchat Server, built with Node.js and TypeScript.
 </p>
 
 <p align="center">
@@ -17,88 +17,84 @@
 <p align="center">
   <a href="#overview">Overview</a> ·
   <a href="#features">Features</a> ·
+  <a href="#requirements">Requirements</a> ·
   <a href="#usage">Usage</a> ·
-  <a href="#public-test-server">Public Test Server</a> ·
   <a href="#development">Development</a> ·
   <a href="#related-projects">Related Projects</a>
 </p>
 
+---
+
 ## Overview
 
-Hackerchat Terminal Client is a TUI (terminal user interface) that connects to any [Hackerchat Server](https://github.com/matheussartori/hackerchat-server) instance over WebSockets. It lets you create and join rooms and exchange messages in real time — entirely from the shell.
+Hackerchat Terminal Client is a TUI that connects to a [Hackerchat Server](https://github.com/matheussartori/hackerchat-server) instance over WebSocket, so you can join a room and chat without leaving the shell.
 
-Because the server is client-agnostic, this client can connect to any Hackerchat Server deployment, whether it is running locally, on a VPS, or at the public test address.
+The screen is split into a header with the room and connection status, a sidebar listing who is online alongside a join and leave log, the message pane, and the input bar at the bottom.
+
+Since the server is client-agnostic, the client works against any deployment of it: a server running on your machine, one on a VPS, or one behind a reverse proxy on `wss://`.
 
 ## Features
 
-- Room-based real-time messaging directly in the terminal
-- TUI built with [Ink](https://github.com/vadimdemedes/ink) (React for the terminal) — no browser required
-- Per-user colours, gradient banner (`ink-gradient` / `ink-big-text`) and icons (`figures` / `chalk`)
-- Scrollback history with keyboard navigation
-- Zero-config connection to the public test server
-- Full TypeScript source
+- Room-based messaging in real time, directly in the terminal
+- Interface built with [Ink](https://github.com/vadimdemedes/ink), React rendered to the terminal
+- Sidebar with the room roster and a running log of who joined or left
+- A colour picked per user and kept consistent for the whole session
+- Scrollback with keyboard navigation, and a layout that reflows when the terminal is resized
+- Runs in the alternate screen buffer, so your shell scrollback is left as it was on exit
+- WebSocket handshake and framing written on top of Node's `http`/`https`, with no WebSocket library in the dependencies
+- Written in TypeScript
+
+## Requirements
+
+Node.js `24` or newer, and a Hackerchat Server to connect to. See [hackerchat-server](https://github.com/matheussartori/hackerchat-server) for how to run one.
 
 ## Usage
 
-### Connecting to a server
-
-Run directly with `npx` — no installation required:
-
-```bash
-npx @matheussartori/hackerchat-client --username YOUR_USERNAME --room ROOM_NAME
-```
-
-To connect to a specific server, pass the `--hostUri` flag:
-
-```bash
-npx @matheussartori/hackerchat-client --username YOUR_USERNAME --room ROOM_NAME --hostUri SERVER_URL
-```
-
-| Flag         | Required | Description                                                     |
-| ------------ | -------- | --------------------------------------------------------------- |
-| `--username` | Yes      | Display name used in the chat room                              |
-| `--room`     | Yes      | Room ID to join or create                                       |
-| `--hostUri`  | No       | WebSocket URL of the server. Defaults to the public test server |
-
-**Example — public test server:**
+Run it straight from npm, no installation needed:
 
 ```bash
 npx @matheussartori/hackerchat-client --username alice --room general
 ```
 
-**Example — local server:**
+That connects to `ws://localhost:9898`, the address a local server listens on by default. Point it somewhere else with `--hostUri`:
 
 ```bash
-npx @matheussartori/hackerchat-client --username alice --room general --hostUri ws://localhost:9898
+npx @matheussartori/hackerchat-client \
+  --username alice \
+  --room general \
+  --hostUri wss://chat.example.com
 ```
+
+| Flag | Required | Description |
+| --- | --- | --- |
+| `--username` | Yes | Display name shown to everyone in the room |
+| `--room` | Yes | Room to join, created by the server if it does not exist |
+| `--hostUri` | No | WebSocket URL of the server (`ws://` or `wss://`). Defaults to `ws://localhost:9898` |
 
 ### Keyboard shortcuts
 
-| Key                  | Action                          |
-| -------------------- | ------------------------------- |
-| `Enter`              | Send the current message        |
-| `Page Up` / `Page Down` | Scroll the message history a page at a time |
-| `Ctrl+U` / `Ctrl+D`  | Scroll the message history one line at a time |
-| `Home` / `End`       | Jump to the oldest / newest message |
-| `Esc` or `Ctrl+C`    | Exit the client                 |
+| Key | Action |
+| --- | --- |
+| `Enter` | Send the current message |
+| `Page Up` / `Page Down` | Scroll the history one screen at a time |
+| `Ctrl+U` / `Ctrl+D` | Scroll the history one line at a time |
+| `Home` / `End` | Jump to the oldest or the newest message |
+| `Esc` or `Ctrl+C` | Leave the chat |
 
-### Global install (optional)
+Messages are capped at 500 characters, and the counter next to the input turns red as you approach the limit.
 
-If you use Hackerchat frequently and prefer a shorter command, install it globally:
+### Installing globally
+
+If you use it often, install it once and skip the `npx` prefix:
 
 ```bash
 npm install -g @matheussartori/hackerchat-client
-```
-
-Then use the `hackerchat` command directly:
-
-```bash
 hackerchat --username alice --room general
 ```
 
 ## Development
 
-> This section is for contributors who want to run or modify the client from source.
+This section is for contributing to the client or running it from source.
 
 **1. Clone the repository**
 
@@ -113,51 +109,35 @@ cd hackerchat-terminal-client
 npm install
 ```
 
-**3. Start the development client**
-
-```bash
-npm run dev -- --username YOUR_USERNAME --room ROOM_NAME
-```
-
-The `--` separator is required to pass arguments through npm to the underlying script.
-
-**Example — public test server:**
+**3. Start the client**
 
 ```bash
 npm run dev -- --username alice --room general
 ```
 
-**Example — local Hackerchat Server:**
+The `--` separator is what tells npm to forward the flags to the script instead of consuming them itself. `tsx` runs the TypeScript sources directly, so there is no build step in the loop.
 
-```bash
-npm run dev -- --username alice --room general --hostUri ws://localhost:9898
-```
+Watch mode is deliberately left out: `tsx watch` reads from stdin to support manual restarts on `Enter`, which collides with Ink's raw-mode keyboard handling and would restart the client on every keystroke.
 
-> `tsx` executes TypeScript directly without a build step. Watch mode is intentionally not used because `tsx watch` reads from `stdin` to support manual restarts (Enter key), which conflicts with Ink's raw-mode keyboard input and would restart the client on every keystroke.
+**Other commands**
 
-**Other useful commands**
+| Command | Description |
+| --- | --- |
+| `npm run build` | Compile TypeScript to `dist/` with `tsup` |
+| `npm run typecheck` | Type-check without emitting |
+| `npm run lint` | Lint `src` and `test` with ESLint |
+| `npm run lint:fix` | Lint and apply the fixes it can |
+| `npm run test:ci` | Run the test suite once |
+| `npm run test:watch` | Run the tests in watch mode |
+| `npm run test:coverage` | Run the tests and write a coverage report |
+| `npm run check:pack` | Check that the npm tarball contains only what it should |
 
-| Command              | Description                              |
-| -------------------- | ---------------------------------------- |
-| `npm run build`      | Compile TypeScript to `dist/` via `tsup` |
-| `npm run lint`       | Lint the `src` folder with ESLint        |
-| `npm run test:ci`    | Run the test suite once with Vitest      |
-| `npm run test:watch` | Run Vitest in watch mode                 |
-
-## Public Test Server
-
-A public instance of Hackerchat Server is available for testing at:
-
-```
-wss://hackerchatserver.mattsartori.com.br
-```
-
-No setup required — just run the client without `--hostUri` and it will connect automatically.
+CI runs lint, typecheck, tests with coverage, the build, the packaging check and `npm audit` on Node 24 and 26.
 
 ## Related Projects
 
-- [hackerchat-server](https://github.com/matheussartori/hackerchat-server) — The WebSocket server that powers Hackerchat
-- [hackerchat-js-sdk](https://github.com/matheussartori/hackerchat-js-sdk) — JavaScript/TypeScript SDK with framework-agnostic client and React bindings
+- [hackerchat-server](https://github.com/matheussartori/hackerchat-server) — The WebSocket server this client connects to
+- [hackerchat-js-sdk](https://github.com/matheussartori/hackerchat-js-sdk) — JavaScript/TypeScript SDK with a framework-agnostic client and React bindings
 
 ## License
 
