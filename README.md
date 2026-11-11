@@ -132,7 +132,7 @@ Watch mode is deliberately left out: `tsx watch` reads from stdin to support man
 | `npm run test:coverage` | Run the tests and write a coverage report |
 | `npm run check:pack` | Check that the npm tarball contains only what it should |
 
-CI runs lint, typecheck, tests with coverage, the build, the packaging check and `npm audit` on Node 24 and 26.
+CI runs lint, typecheck, tests with coverage, the build, the packaging check and `npm audit` on Node 26 (LTS).
 
 ## Related Projects
 
