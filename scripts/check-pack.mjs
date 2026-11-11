@@ -13,8 +13,6 @@ const ALLOWED = [
   /^README\.md$/,
   /^LICENSE$/,
   /^package\.json$/,
-  // Pre-existing asset shipped since 1.0.0.
-  /^armor_layer_1_mod\.png$/,
 ]
 
 const output = execFileSync('npm', ['pack', '--dry-run', '--json'], {
