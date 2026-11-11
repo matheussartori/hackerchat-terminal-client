@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D24-brightgreen?logo=node.js&logoColor=white" alt="Node.js version" /></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D26-brightgreen?logo=node.js&logoColor=white" alt="Node.js version" /></a>
   <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-6-blue?logo=typescript&logoColor=white" alt="TypeScript" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License" /></a>
 </p>
@@ -46,7 +46,7 @@ Since the server is client-agnostic, the client works against any deployment of 
 
 ## Requirements
 
-Node.js `24` or newer, and a Hackerchat Server to connect to. See [hackerchat-server](https://github.com/matheussartori/hackerchat-server) for how to run one.
+Node.js `26` or newer, and a Hackerchat Server to connect to. See [hackerchat-server](https://github.com/matheussartori/hackerchat-server) for how to run one.
 
 ## Usage
 
