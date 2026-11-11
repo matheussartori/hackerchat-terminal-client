@@ -35,22 +35,25 @@
   },
   "license": "MIT",
   "dependencies": {
-    "chalk": "^6.0.0",
+    "chalk": "^6.0.1",
     "figures": "^6.1.0",
-    "ink": "^7.1.1",
-    "react": "^19.2.8"
+    "ink": "^8.0.0",
+    "react": "^19.3.1"
   },
   "devDependencies": {
-    "@types/node": "^26.4.1",
-    "@types/react": "^19.2.18",
-    "@vitest/coverage-v8": "^4.1.11",
-    "eslint": "^9.39.5",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@vitest/coverage-v8": "^5.1.0",
+    "eslint": "^10.14.0",
     "ink-testing-library": "^4.0.0",
-    "neostandard": "^0.13.0",
-    "tsup": "^8.5.1",
-    "tsx": "^4.23.13",
+    "neostandard": "^0.14.1",
+    "tsup": "^9.0.0",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.69.0",
-    "vitest": "^4.1.11"
+    "typescript-eslint": "^8.72.2",
+    "vitest": "^5.1.0"
+  },
+  "overrides": {
+    "minimatch@^10": "^11.0.8"
   }
 }

@@ -24,7 +24,8 @@ type AppProps = {
 
 export function App({ emitter, userName, room }: AppProps) {
   const { exit } = useApp()
-  const { stdout } = useStdout()
+  // Ink 8 types stdout as a generic WritableStream; at runtime it is a TTY WriteStream (columns/rows/resize).
+  const stdout = useStdout().stdout as NodeJS.WriteStream
   const colorService = useMemo(() => new UserColorService(), [])
 
   const [cols, setCols] = useState(Math.max(MIN_COLS, stdout.columns ?? MIN_COLS))
